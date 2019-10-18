@@ -16,7 +16,7 @@ spec:
     app: kibana
 ---
 # Kibana Deployment
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: kibana
@@ -24,6 +24,9 @@ metadata:
   labels:
     app: kibana
 spec:
+  selector:
+    matchLabels:
+      app: kibana
   template:
     metadata:
       labels:

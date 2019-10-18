@@ -16,7 +16,7 @@ spec:
     app: elasticsearch
 ---
 # Elasticsearch Deployment
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: elasticsearch
@@ -24,6 +24,9 @@ metadata:
   labels:
     app: elasticsearch
 spec:
+  selector:
+    matchLabels:
+      app: elasticsearch
   template:
     metadata:
       labels:

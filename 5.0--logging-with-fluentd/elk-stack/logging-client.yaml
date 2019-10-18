@@ -21,7 +21,7 @@ spec:
     app: istio-fluentd
 ---
 # Fluentd Deployment
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: istio-fluentd
@@ -29,6 +29,9 @@ metadata:
   labels:
     app: istio-fluentd
 spec:
+  selector:
+    matchLabels:
+      app: istio-fluentd
   template:
     metadata:
       labels:
