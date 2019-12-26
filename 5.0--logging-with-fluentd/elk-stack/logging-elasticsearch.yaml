@@ -12,6 +12,7 @@ spec:
   - port: 9200
     protocol: TCP
     targetPort: db
+    nodePort: 9200
   selector:
     app: elasticsearch
 ---
