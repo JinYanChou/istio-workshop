@@ -65,7 +65,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: elasticsearch-pvc
-  namespace: csr
+  namespace: logging
 spec:
   storageClassName: csr-storage
   accessModes:
