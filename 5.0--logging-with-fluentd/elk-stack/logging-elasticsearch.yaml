@@ -55,8 +55,21 @@ spec:
           protocol: TCP
         volumeMounts:
         - name: elasticsearch
-          mountPath: /data
+          mountPath: /usr/share/elasticsearch/data
       volumes:
       - name: elasticsearch
-        emptyDir: {}
+        persistentVolumeClaim:
+          claimName: elasticsearch-pvc
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: elasticsearch-pvc
+  namespace: csr
+spec:
+  storageClassName: csr-storage
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
