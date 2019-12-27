@@ -1,3 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kibana-configmap
+  namespace: logging
+data:
+  kibana.yml: |
+    server.name: kibana
+    server.host: "0"
+    elasticsearch.url: http://elasticsearch:9200
+    server.defaultRoute: /kibana
 ---
 # Kibana Service
 apiVersion: v1
@@ -52,4 +63,15 @@ spec:
         - containerPort: 5601
           name: ui
           protocol: TCP
+        volumeMounts:
+        - name: kibana-yml
+          mountPath: /usr/share/kibana/config/kibana.yml
+          subPath: kibana.yml
+      volumes:
+      - name: kibana-yml
+        configMap:
+          name: kibana-configmap
+          items:
+          - key: kibana.yml
+            path: kibana.yml
 ---
